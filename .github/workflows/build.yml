@@ -2,7 +2,7 @@ name: Build PKG
 on: workflow_dispatch
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: "1"
     steps:
@@ -11,7 +11,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang lld unzip
       - name: Toolchain OpenOrbis
         run: |
-          curl -fL -o tc.tar.gz https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/download/v0.5.4/v0.5.4.tar.gz
+          curl -fL -o tc.tar.gz https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/download/v0.5.4/toolchain-llvm-18.tar.gz
           mkdir tc && tar -xzf tc.tar.gz -C tc
           LINKX=$(find tc -name link.x | head -n1)
           TC=$(dirname "$LINKX")
